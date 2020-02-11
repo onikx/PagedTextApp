@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_layout_padding" >
+
+    <com.onik.pagedtextview.PagedTextView
+            android:id="@+id/textViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textViewPaging" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/textViewPaging"
+            android:orientation="horizontal" >
+
+        <Button
+                android:id="@+id/buttonLast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:background="@android:color/transparent" />
+
+        <Button
+                android:id="@+id/buttonNext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/button_margin"
+                android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/textViewPaging"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Paged Text App</string>
+    <string name="paging">%s / %s</string>
+</resources>

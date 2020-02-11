@@ -1,0 +1,3 @@
+include ':app'
+//include ':pagedtextviewlib'
+//project(':pagedtextviewlib').projectDir = new File('../PagedTextView/lib')
