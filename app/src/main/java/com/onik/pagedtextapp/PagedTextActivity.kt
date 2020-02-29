@@ -30,7 +30,9 @@ class PagedTextActivity : AppCompatActivity() {
             }
         }
 
-        updatePaging()
+        textViewContent.post {
+            updatePaging()
+        }
     }
 
     private fun updatePaging() {
