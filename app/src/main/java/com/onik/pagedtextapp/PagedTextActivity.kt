@@ -2,14 +2,21 @@ package com.onik.pagedtextapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.onik.pagedtextapp.di.DaggerPagedTextComponent
+import com.onik.pagedtextapp.di.PagedTextComponent
+import com.onik.pagedtextapp.di.PagedTextModule
 import kotlinx.android.synthetic.main.activity_pagedtext.*
 
 class PagedTextActivity : AppCompatActivity() {
+
+    lateinit var component: PagedTextComponent
 
     private var pageIndex: Int = 0
     private val fileReader: FileReader = FileReaderImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupComponent()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagedtext)
 
@@ -33,6 +40,14 @@ class PagedTextActivity : AppCompatActivity() {
         textViewContent.post {
             updatePaging()
         }
+    }
+
+    fun setupComponent() {
+        component = DaggerPagedTextComponent.builder()
+            .pagedTextModule(
+                PagedTextModule()
+            )
+            .build()
     }
 
     private fun updatePaging() {
