@@ -25,14 +25,14 @@ class PagedTextActivity : AppCompatActivity() {
 
         buttonLast.setOnClickListener {
             if (pageIndex > 0) {
-                textViewContent.nextPage(--pageIndex)
+                textViewContent.next(--pageIndex)
                 updatePaging()
             }
         }
 
         buttonNext.setOnClickListener {
             if (pageIndex < textViewContent.size() - 1) {
-                textViewContent.nextPage(++pageIndex)
+                textViewContent.next(++pageIndex)
                 updatePaging()
             }
         }
