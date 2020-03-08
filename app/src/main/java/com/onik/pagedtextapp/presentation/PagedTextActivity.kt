@@ -1,18 +1,21 @@
-package com.onik.pagedtextapp
+package com.onik.pagedtextapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.onik.pagedtextapp.di.DaggerPagedTextComponent
-import com.onik.pagedtextapp.di.PagedTextComponent
-import com.onik.pagedtextapp.di.PagedTextModule
+import com.onik.pagedtextapp.R
+import com.onik.pagedtextapp.presentation.di.DaggerPagedTextComponent
+import com.onik.pagedtextapp.presentation.di.PagedTextComponent
+import com.onik.pagedtextapp.presentation.di.PagedTextModule
 import kotlinx.android.synthetic.main.activity_pagedtext.*
+import javax.inject.Inject
 
-class PagedTextActivity : AppCompatActivity() {
+class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     lateinit var component: PagedTextComponent
+    @Inject
+    lateinit var presenter: PagedTextPresenter
 
     private var pageIndex: Int = 0
-    private val fileReader: FileReader = FileReaderImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupComponent()
@@ -20,8 +23,7 @@ class PagedTextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagedtext)
 
-        val text = fileReader.read(this, "")
-        textViewContent.text = text
+        presenter.onViewCreated(this)
 
         buttonLast.setOnClickListener {
             if (pageIndex > 0) {
@@ -42,12 +44,17 @@ class PagedTextActivity : AppCompatActivity() {
         }
     }
 
+    override fun setText(text: String?) {
+        textViewContent?.text = text
+    }
+
     fun setupComponent() {
         component = DaggerPagedTextComponent.builder()
             .pagedTextModule(
-                PagedTextModule()
+                PagedTextModule(this)
             )
             .build()
+        component.inject(this)
     }
 
     private fun updatePaging() {

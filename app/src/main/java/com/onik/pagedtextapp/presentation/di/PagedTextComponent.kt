@@ -1,6 +1,6 @@
-package com.onik.pagedtextapp.di
+package com.onik.pagedtextapp.presentation.di
 
-import com.onik.pagedtextapp.PagedTextActivity
+import com.onik.pagedtextapp.presentation.PagedTextActivity
 import dagger.Component
 
 @Component(modules = [PagedTextModule::class])

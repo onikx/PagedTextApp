@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp
+package com.onik.pagedtextapp.data
 
 import android.content.Context
 

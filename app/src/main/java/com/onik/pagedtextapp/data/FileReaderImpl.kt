@@ -1,12 +1,13 @@
-package com.onik.pagedtextapp
+package com.onik.pagedtextapp.data
 
 import android.content.Context
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
+import javax.inject.Inject
 
-class FileReaderImpl : FileReader {
+class FileReaderImpl @Inject constructor() : FileReader {
     
     override fun read(context: Context,  filename: String): String? {
         var reader: BufferedReader? = null
