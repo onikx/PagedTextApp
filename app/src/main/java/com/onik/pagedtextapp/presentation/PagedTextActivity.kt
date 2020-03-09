@@ -2,6 +2,7 @@ package com.onik.pagedtextapp.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.onik.pagedtextapp.App
 import com.onik.pagedtextapp.R
 import com.onik.pagedtextapp.presentation.di.DaggerPagedTextComponent
 import com.onik.pagedtextapp.presentation.di.PagedTextComponent
@@ -23,7 +24,7 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagedtext)
 
-        presenter.onViewCreated(this)
+        presenter.onViewCreated()
 
         buttonLast.setOnClickListener {
             if (pageIndex > 0) {
@@ -50,6 +51,7 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     fun setupComponent() {
         component = DaggerPagedTextComponent.builder()
+            .utilComponent((application as App).utilComponent)
             .pagedTextModule(
                 PagedTextModule(this)
             )

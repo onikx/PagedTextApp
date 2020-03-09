@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.data
+package com.onik.pagedtextapp.util
 
 import android.content.Context
 import java.io.BufferedReader
@@ -7,9 +7,11 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class FileReaderImpl @Inject constructor() : FileReader {
+class FileReaderImpl @Inject constructor(
+    private val context: Context
+) : FileReader {
     
-    override fun read(context: Context,  filename: String): String? {
+    override fun read(filename: String): String? {
         var reader: BufferedReader? = null
         var allText = ""
         try {
