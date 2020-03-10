@@ -1,7 +1,7 @@
 package com.onik.pagedtextapp.util.di
 
-import com.onik.pagedtextapp.util.FileReader
-import com.onik.pagedtextapp.util.FileReaderImpl
+import com.onik.pagedtextapp.util.TextProvider
+import com.onik.pagedtextapp.util.TextProviderImpl
 import dagger.Module
 import dagger.Provides
 
@@ -9,5 +9,5 @@ import dagger.Provides
 class UtilModule {
 
     @Provides
-    fun provideTextProvider(provider: FileReaderImpl): FileReader = provider
+    fun provideTextProvider(provider: TextProviderImpl): TextProvider = provider
 }

@@ -7,11 +7,11 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class FileReaderImpl @Inject constructor(
+class TextProviderImpl @Inject constructor(
     private val context: Context
-) : FileReader {
+) : TextProvider {
     
-    override fun read(filename: String): String? {
+    override fun get(path: String): String? {
         var reader: BufferedReader? = null
         var allText = ""
         try {
