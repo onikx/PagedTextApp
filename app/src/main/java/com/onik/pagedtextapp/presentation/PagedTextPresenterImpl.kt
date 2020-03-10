@@ -12,4 +12,16 @@ class PagedTextPresenterImpl @Inject constructor(
         val text = textProvider.get("")
         view.setText(text)
     }
+
+    override fun onLastClicked() {
+        if (view.getPageIndex() > 0) {
+            view.showLast()
+        }
+    }
+
+    override fun onNextClicked() {
+        if (view.getPageIndex() < view.getSize() - 1) {
+            view.showNext()
+        }
+    }
 }

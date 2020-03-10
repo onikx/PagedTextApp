@@ -27,17 +27,11 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
         presenter.onViewCreated()
 
         buttonLast.setOnClickListener {
-            if (pageIndex > 0) {
-                textViewContent.next(--pageIndex)
-                updatePaging()
-            }
+            presenter.onLastClicked()
         }
 
         buttonNext.setOnClickListener {
-            if (pageIndex < textViewContent.size() - 1) {
-                textViewContent.next(++pageIndex)
-                updatePaging()
-            }
+            presenter.onNextClicked()
         }
 
         textViewContent.post {
@@ -45,8 +39,22 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
         }
     }
 
+    override fun getSize(): Int = textViewContent?.size() ?: 0
+
+    override fun getPageIndex(): Int = pageIndex
+
     override fun setText(text: String?) {
         textViewContent?.text = text
+    }
+
+    override fun showLast() {
+        textViewContent.next(--pageIndex)
+        updatePaging()
+    }
+
+    override fun showNext() {
+        textViewContent.next(++pageIndex)
+        updatePaging()
     }
 
     fun setupComponent() {
