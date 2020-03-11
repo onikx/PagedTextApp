@@ -6,4 +6,5 @@ interface PaginatedTextView {
     fun setText(text: String?)
     fun showLast()
     fun showNext()
+    fun updatePageNumber()
 }

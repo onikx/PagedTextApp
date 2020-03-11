@@ -25,14 +25,22 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
+
     // DI
     implementation 'com.google.dagger:dagger:2.24'
     kapt 'com.google.dagger:dagger-compiler:2.24'
     compileOnly 'javax.inject:javax.inject:1'
 
+    // PagedTextView lib
     implementation 'com.github.onikx:pagedtextview:0.1.1'
 //    implementation project(":pagedtextviewlib")
+
+    // Unit testing
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.6.0'
+
+    // Instrumentation testing
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

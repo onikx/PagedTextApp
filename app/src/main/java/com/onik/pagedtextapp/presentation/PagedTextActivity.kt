@@ -12,11 +12,10 @@ import javax.inject.Inject
 
 class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
-    lateinit var component: PagedTextComponent
+    private var pageIndex: Int = 0
+    private lateinit var component: PagedTextComponent
     @Inject
     lateinit var presenter: PagedTextPresenter
-
-    private var pageIndex: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupComponent()
@@ -35,7 +34,7 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
         }
 
         textViewContent.post {
-            updatePaging()
+            updatePageNumber()
         }
     }
 
@@ -49,12 +48,19 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     override fun showLast() {
         textViewContent.next(--pageIndex)
-        updatePaging()
     }
 
     override fun showNext() {
         textViewContent.next(++pageIndex)
-        updatePaging()
+    }
+
+    override fun updatePageNumber() {
+        textViewPaging.text =
+            getString(
+                R.string.paging,
+                (pageIndex + 1).toString(),
+                textViewContent.size().toString()
+            )
     }
 
     fun setupComponent() {
@@ -65,14 +71,5 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
             )
             .build()
         component.inject(this)
-    }
-
-    private fun updatePaging() {
-        textViewPaging.text =
-            getString(
-                R.string.paging,
-                (pageIndex + 1).toString(),
-                textViewContent.size().toString()
-            )
     }
 }
