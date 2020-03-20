@@ -4,24 +4,23 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.onik.pagedtextapp.util.TextProvider
+import com.onik.pagedtextapp.domain.usecase.GetTextUseCase
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
 
 class PagedTextPresenterImplTest {
     private lateinit var mockView: PaginatedTextView
-    private lateinit var mockTextProvider: TextProvider
+    private lateinit var mockUseCase: GetTextUseCase
     private lateinit var presenter: PagedTextPresenter
 
     @Before
     fun setUp() {
         mockView = mock { }
-        mockTextProvider = mock { }
+        mockUseCase = mock { }
 
         presenter = PagedTextPresenterImpl(
             view = mockView,
-            textProvider = mockTextProvider
+            getTextUseCase = mockUseCase
         )
     }
 
@@ -30,7 +29,7 @@ class PagedTextPresenterImplTest {
 
         val mockText = "Mock text"
 
-        whenever(mockTextProvider.get(anyString())).thenReturn(mockText)
+        whenever(mockUseCase.execute()).thenReturn(mockText)
 
         presenter.onViewCreated()
 

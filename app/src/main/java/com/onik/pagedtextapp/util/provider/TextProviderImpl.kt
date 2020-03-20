@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.util
+package com.onik.pagedtextapp.util.provider
 
 import android.content.Context
 import java.io.BufferedReader

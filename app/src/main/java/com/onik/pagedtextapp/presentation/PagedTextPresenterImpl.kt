@@ -1,16 +1,16 @@
 package com.onik.pagedtextapp.presentation
 
-import com.onik.pagedtextapp.util.TextProvider
+import com.onik.pagedtextapp.domain.usecase.GetTextUseCase
 import javax.inject.Inject
 
 class PagedTextPresenterImpl @Inject constructor(
     private val view: PaginatedTextView,
-    private val textProvider: TextProvider
+    private val getTextUseCase: GetTextUseCase
 ) : PagedTextPresenter {
 
     override fun onViewCreated() {
         view.setText(
-            textProvider.get("")
+            getTextUseCase.execute()
         )
     }
 

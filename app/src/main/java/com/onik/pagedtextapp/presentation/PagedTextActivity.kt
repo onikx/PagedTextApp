@@ -65,7 +65,7 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     fun setupComponent() {
         component = DaggerPagedTextComponent.builder()
-            .utilComponent((application as App).utilComponent)
+            .domainComponent((application as App).domainComponent)
             .pagedTextModule(
                 PagedTextModule(this)
             )
