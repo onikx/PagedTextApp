@@ -7,5 +7,15 @@ class TextRepoImpl @Inject constructor(
     private val textProvider: TextProvider
 ) : TextRepo {
 
-    override fun get(): String = textProvider.get("") ?: ""
+    override fun get(): String {
+        var text = ""
+
+        textProvider.get(
+            path = "",
+            onData = { text = it },
+            onError = { text = "" }
+        )
+
+        return text
+    }
 }

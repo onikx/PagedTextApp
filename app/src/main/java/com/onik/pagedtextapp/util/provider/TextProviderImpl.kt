@@ -4,33 +4,19 @@ import android.content.Context
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
-import java.io.InputStreamReader
 import javax.inject.Inject
 
 class TextProviderImpl @Inject constructor(
     private val context: Context
 ) : TextProvider {
-    
-    override fun get(path: String): String? {
-        var reader: BufferedReader? = null
-        var allText = ""
+
+    override fun get(path: String, onData: (String) -> Unit, onError: (IOException) -> Unit) {
         try {
             val inputStream: InputStream = context.assets.open("text.txt")
-            reader = BufferedReader(
-                    InputStreamReader(context.assets.open("text.txt"), "UTF-8")
-            )
-            allText = inputStream.bufferedReader().use(BufferedReader::readText)
+            val text = inputStream.bufferedReader().use(BufferedReader::readText)
+            onData(text)
         } catch (e: IOException) {
-            // todo handle error on reading
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close()
-                } catch (e: IOException) {
-                    // todo handle error on closing
-                }
-            }
+            onError(e)
         }
-        return allText
     }
 }
