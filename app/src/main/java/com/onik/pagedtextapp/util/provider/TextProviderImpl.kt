@@ -11,7 +11,7 @@ class TextProviderImpl @Inject constructor(
 
     override fun get(fileName: String,
                      onData: (String) -> Unit,
-                     onError: (IOException) -> Unit
+                     onError: (Throwable) -> Unit
     ) {
         try {
             onData(

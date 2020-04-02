@@ -5,7 +5,9 @@ import com.onik.pagedtextapp.data.repo.TextRepoImpl
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(
+    includes = [MapperModule::class]
+)
 class RepoModule {
 
     @Provides
