@@ -9,12 +9,15 @@ class PagedTextPresenterImpl @Inject constructor(
     private val getTextUseCase: GetTextUseCase
 ) : PagedTextPresenter {
 
-    override fun onViewCreated() {
-        when (val data = getTextUseCase.execute()) {
-            is Data.Value -> view.setText(data.value)
-            is Data.Error -> view.setText(data.error.localizedMessage)
-        }
+    companion object {
+        private const val FILE_NAME = "text.txt"
     }
+
+    override fun onViewCreated() =
+        when (val data = getTextUseCase.execute(FILE_NAME)) {
+            is Data.Value -> view.setText(data.value)
+            is Data.Error -> view.setText(data.error.toString())
+        }
 
     override fun onLastClicked() {
         if (view.getPageIndex() > 0) {

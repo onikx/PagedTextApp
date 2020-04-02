@@ -8,5 +8,5 @@ class GetTextUseCaseImpl @Inject constructor(
     private val repo: TextRepo
 ) : GetTextUseCase {
 
-    override fun execute(): Data = repo.get()
+    override fun execute(fileName: String): Data = repo.get(fileName)
 }

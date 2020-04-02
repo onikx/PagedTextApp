@@ -8,11 +8,11 @@ class TextRepoImpl @Inject constructor(
     private val textProvider: TextProvider
 ) : TextRepo {
 
-    override fun get(): Data {
+    override fun get(fileName: String): Data {
         var data: Data = Data.Value("")
 
         textProvider.get(
-            path = "",
+            fileName = fileName,
             onData = { data = Data.Value(it) },
             onError = { data = Data.Error(it) }
         )
