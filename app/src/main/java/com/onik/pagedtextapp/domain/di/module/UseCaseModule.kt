@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.domain.di
+package com.onik.pagedtextapp.domain.di.module
 
 import com.onik.pagedtextapp.domain.usecase.GetTextUseCase
 import com.onik.pagedtextapp.domain.usecase.GetTextUseCaseImpl

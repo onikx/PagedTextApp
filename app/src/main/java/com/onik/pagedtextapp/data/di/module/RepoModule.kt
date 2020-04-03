@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.data.di
+package com.onik.pagedtextapp.data.di.module
 
 import com.onik.pagedtextapp.data.repo.TextRepo
 import com.onik.pagedtextapp.data.repo.TextRepoImpl

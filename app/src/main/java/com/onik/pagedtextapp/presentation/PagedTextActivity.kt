@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.onik.pagedtextapp.App
 import com.onik.pagedtextapp.R
-import com.onik.pagedtextapp.presentation.di.DaggerPagedTextComponent
-import com.onik.pagedtextapp.presentation.di.PagedTextComponent
-import com.onik.pagedtextapp.presentation.di.PagedTextModule
+import com.onik.pagedtextapp.presentation.di.component.DaggerPagedTextComponent
+import com.onik.pagedtextapp.presentation.di.component.PagedTextComponent
+import com.onik.pagedtextapp.presentation.di.module.PagedTextModule
 import kotlinx.android.synthetic.main.activity_pagedtext.*
 import javax.inject.Inject
 

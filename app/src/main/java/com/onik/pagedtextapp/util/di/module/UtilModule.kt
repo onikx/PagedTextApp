@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.util.di
+package com.onik.pagedtextapp.util.di.module
 
 import com.onik.pagedtextapp.util.provider.TextProvider
 import com.onik.pagedtextapp.util.provider.TextProviderImpl

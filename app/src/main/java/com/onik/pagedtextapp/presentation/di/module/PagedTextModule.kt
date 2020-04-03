@@ -1,4 +1,4 @@
-package com.onik.pagedtextapp.presentation.di
+package com.onik.pagedtextapp.presentation.di.module
 
 import com.onik.pagedtextapp.presentation.PagedTextPresenter
 import com.onik.pagedtextapp.presentation.PagedTextPresenterImpl

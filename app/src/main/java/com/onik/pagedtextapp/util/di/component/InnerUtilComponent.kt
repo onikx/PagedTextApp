@@ -1,6 +1,7 @@
-package com.onik.pagedtextapp.util.di
+package com.onik.pagedtextapp.util.di.component
 
 import android.content.Context
+import com.onik.pagedtextapp.util.di.module.UtilModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -9,7 +10,8 @@ import javax.inject.Singleton
     modules = [UtilModule::class]
 )
 @Singleton
-internal interface InnerUtilComponent : UtilComponent {
+internal interface InnerUtilComponent :
+    UtilComponent {
 
     @Component.Builder
     interface Builder {

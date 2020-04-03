@@ -1,12 +1,12 @@
 package com.onik.pagedtextapp
 
 import android.app.Application
-import com.onik.pagedtextapp.di.component.DaggerDataComponent
-import com.onik.pagedtextapp.di.component.DaggerDomainComponent
-import com.onik.pagedtextapp.di.component.DataComponent
-import com.onik.pagedtextapp.di.component.DomainComponent
-import com.onik.pagedtextapp.util.di.UtilComponent
-import com.onik.pagedtextapp.util.di.UtilComponentBuilder
+import com.onik.pagedtextapp.data.di.component.DaggerDataComponent
+import com.onik.pagedtextapp.data.di.component.DataComponent
+import com.onik.pagedtextapp.domain.di.component.DaggerDomainComponent
+import com.onik.pagedtextapp.domain.di.component.DomainComponent
+import com.onik.pagedtextapp.util.di.component.UtilComponent
+import com.onik.pagedtextapp.util.di.component.UtilComponentBuilder
 
 class AppImpl : Application(), App {
 

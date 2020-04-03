@@ -1,8 +1,9 @@
-package com.onik.pagedtextapp.presentation.di
+package com.onik.pagedtextapp.presentation.di.component
 
-import com.onik.pagedtextapp.di.component.DomainComponent
+import com.onik.pagedtextapp.domain.di.component.DomainComponent
 import com.onik.pagedtextapp.di.scope.ActivityScope
 import com.onik.pagedtextapp.presentation.PagedTextActivity
+import com.onik.pagedtextapp.presentation.di.module.PagedTextModule
 import dagger.Component
 
 @ActivityScope
