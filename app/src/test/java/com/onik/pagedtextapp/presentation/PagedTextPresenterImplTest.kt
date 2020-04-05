@@ -1,39 +1,45 @@
 package com.onik.pagedtextapp.presentation
 
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.never
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockito_kotlin.*
 import com.onik.pagedtextapp.domain.usecase.GetTextUseCase
+import com.onik.pagedtextapp.entity.Data
+import com.onik.pagedtextapp.presentation.data.ViewState
+import com.onik.pagedtextapp.presentation.mapper.PagedTextMapper
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyString
 
 class PagedTextPresenterImplTest {
     private lateinit var mockView: PaginatedTextView
+    private lateinit var mockMapper: PagedTextMapper
     private lateinit var mockUseCase: GetTextUseCase
     private lateinit var presenter: PagedTextPresenter
 
     @Before
     fun setUp() {
         mockView = mock { }
+        mockMapper = mock { }
         mockUseCase = mock { }
 
         presenter = PagedTextPresenterImpl(
             view = mockView,
+            mapper = mockMapper,
             getTextUseCase = mockUseCase
         )
     }
 
     @Test
-    fun `onViewCreated() view should setText(_) with what textProvider_get() returns`() {
+    fun `onViewCreated() view should updateState(_) with the state that mapper returns`() {
 
-        val mockText = "Mock text"
+        val mockData = Data.Value("value")
+        val mockState = ViewState.Data("data")
 
-        whenever(mockUseCase.execute()).thenReturn(mockText)
+        whenever(mockUseCase.execute(anyString())).thenReturn(mockData)
+        whenever(mockMapper.map(any())).thenReturn(mockState)
 
         presenter.onViewCreated()
 
-        verify(mockView).setText(mockText)
+        verify(mockView).updateState(mockState)
     }
 
     @Test

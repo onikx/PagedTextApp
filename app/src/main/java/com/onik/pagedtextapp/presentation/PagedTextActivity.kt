@@ -61,8 +61,8 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
     }
 
     override fun updateState(state: ViewState) = when (state) {
-        is ViewState.Data -> textViewContent?.text = state.data
-        is ViewState.Error-> textViewContent?.text = state.message
+        is ViewState.Data -> textViewContent.text = state.data
+        is ViewState.Error-> textViewContent.text = state.message
     }
 
     fun setupComponent() {
