@@ -24,7 +24,7 @@ class PagedTextPresenterImplTest {
         presenter = PagedTextPresenterImpl(
             view = mockView,
             mapper = mockMapper,
-            getTextUseCase = mockUseCase
+            useCase = mockUseCase
         )
     }
 

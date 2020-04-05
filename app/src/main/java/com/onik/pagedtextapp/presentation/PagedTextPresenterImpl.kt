@@ -7,7 +7,7 @@ import javax.inject.Inject
 class PagedTextPresenterImpl @Inject constructor(
     private val view: PaginatedTextView,
     private val mapper: PagedTextMapper,
-    private val getTextUseCase: GetTextUseCase
+    private val useCase: GetTextUseCase
 ) : PagedTextPresenter {
 
     companion object {
@@ -15,7 +15,7 @@ class PagedTextPresenterImpl @Inject constructor(
     }
 
     override fun onViewCreated() {
-        val data = getTextUseCase.execute(FILE_NAME)
+        val data = useCase.execute(FILE_NAME)
         view.updateState(mapper.map(data))
     }
 
