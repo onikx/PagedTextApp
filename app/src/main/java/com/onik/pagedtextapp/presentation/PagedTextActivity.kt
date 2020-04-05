@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.onik.pagedtextapp.App
 import com.onik.pagedtextapp.R
+import com.onik.pagedtextapp.presentation.data.ViewState
 import com.onik.pagedtextapp.presentation.di.component.DaggerPagedTextComponent
 import com.onik.pagedtextapp.presentation.di.component.PagedTextComponent
 import com.onik.pagedtextapp.presentation.di.module.PagedTextModule
@@ -42,10 +43,6 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     override fun getPageIndex(): Int = pageIndex
 
-    override fun setText(text: String?) {
-        textViewContent?.text = text
-    }
-
     override fun showLast() {
         textViewContent.next(--pageIndex)
     }
@@ -61,6 +58,11 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
                 (pageIndex + 1).toString(),
                 textViewContent.size().toString()
             )
+    }
+
+    override fun updateState(state: ViewState) = when (state) {
+        is ViewState.Data -> textViewContent?.text = state.data
+        is ViewState.Error-> textViewContent?.text = state.message
     }
 
     fun setupComponent() {

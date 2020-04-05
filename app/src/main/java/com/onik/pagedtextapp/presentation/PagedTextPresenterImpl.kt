@@ -1,11 +1,12 @@
 package com.onik.pagedtextapp.presentation
 
 import com.onik.pagedtextapp.domain.usecase.GetTextUseCase
-import com.onik.pagedtextapp.entity.Data
+import com.onik.pagedtextapp.presentation.mapper.PagedTextMapper
 import javax.inject.Inject
 
 class PagedTextPresenterImpl @Inject constructor(
     private val view: PaginatedTextView,
+    private val mapper: PagedTextMapper,
     private val getTextUseCase: GetTextUseCase
 ) : PagedTextPresenter {
 
@@ -13,11 +14,10 @@ class PagedTextPresenterImpl @Inject constructor(
         private const val FILE_NAME = "text.txt"
     }
 
-    override fun onViewCreated() =
-        when (val data = getTextUseCase.execute(FILE_NAME)) {
-            is Data.Value -> view.setText(data.value)
-            is Data.Error -> view.setText(data.error.toString())
-        }
+    override fun onViewCreated() {
+        val data = getTextUseCase.execute(FILE_NAME)
+        view.updateState(mapper.map(data))
+    }
 
     override fun onLastClicked() {
         if (view.getPageIndex() > 0) {
