@@ -7,19 +7,11 @@ import com.onik.pagedtextapp.domain.di.component.DaggerDomainComponent
 import com.onik.pagedtextapp.domain.di.component.DomainComponent
 import com.onik.pagedtextapp.builder.UiComponentBuilder
 import com.onik.pagedtextapp.presentation.di.builder.PagedTextComponentBuilder
-import com.onik.pagedtextapp.presentation.di.builder.PagedTextComponentBuilderImpl
+import com.onik.pagedtextapp.presentation.di.builder.TestPagedTextComponentBuilderImpl
 import com.onik.pagedtextapp.util.di.component.UtilComponent
 import com.onik.pagedtextapp.util.di.component.UtilComponentBuilder
 
-class AppImpl : Application(), App {
-
-    override val uiComponentBuilder: UiComponentBuilder by lazy {
-        object : UiComponentBuilder {
-            override val pagedTextComponentBuilder: PagedTextComponentBuilder by lazy {
-                PagedTextComponentBuilderImpl(this@AppImpl)
-            }
-        }
-    }
+class TestAppImpl : Application(), App {
 
     override val dataComponent: DataComponent by lazy {
         DaggerDataComponent.builder()
@@ -37,5 +29,13 @@ class AppImpl : Application(), App {
         UtilComponentBuilder().create(
             context = this.applicationContext
         )
+    }
+
+    override val uiComponentBuilder: UiComponentBuilder by lazy {
+        object : UiComponentBuilder {
+            override val pagedTextComponentBuilder: PagedTextComponentBuilder by lazy {
+                TestPagedTextComponentBuilderImpl()
+            }
+        }
     }
 }

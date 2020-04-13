@@ -5,21 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.onik.pagedtextapp.App
 import com.onik.pagedtextapp.R
 import com.onik.pagedtextapp.presentation.data.ViewState
-import com.onik.pagedtextapp.presentation.di.component.DaggerPagedTextComponent
-import com.onik.pagedtextapp.presentation.di.component.PagedTextComponent
-import com.onik.pagedtextapp.presentation.di.module.PagedTextModule
 import kotlinx.android.synthetic.main.activity_pagedtext.*
 import javax.inject.Inject
 
 class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
 
     private var pageIndex: Int = 0
-    private lateinit var component: PagedTextComponent
     @Inject
     lateinit var presenter: PagedTextPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupComponent()
+        buildComponent()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagedtext)
@@ -37,6 +33,14 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
         textViewContent.post {
             updatePageNumber()
         }
+    }
+
+    private fun buildComponent() {
+        (application as App)
+            .uiComponentBuilder
+            .pagedTextComponentBuilder
+            .build(this)
+            .inject(this)
     }
 
     override fun getSize(): Int = textViewContent?.size() ?: 0
@@ -63,15 +67,5 @@ class PagedTextActivity : AppCompatActivity(), PaginatedTextView {
     override fun updateState(state: ViewState) = when (state) {
         is ViewState.Data -> textViewContent.text = state.data
         is ViewState.Error-> textViewContent.text = state.message
-    }
-
-    fun setupComponent() {
-        component = DaggerPagedTextComponent.builder()
-            .domainComponent((application as App).domainComponent)
-            .pagedTextModule(
-                PagedTextModule(this)
-            )
-            .build()
-        component.inject(this)
     }
 }
