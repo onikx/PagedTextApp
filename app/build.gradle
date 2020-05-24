@@ -27,8 +27,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     // DI
-    implementation 'com.google.dagger:dagger:2.24'
-    kapt 'com.google.dagger:dagger-compiler:2.24'
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
     compileOnly 'javax.inject:javax.inject:1'
 
     // PagedTextView lib
@@ -41,7 +41,7 @@ dependencies {
     testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.6.0'
 
     // Instrumentation testing
-    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.24'
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.27'
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
