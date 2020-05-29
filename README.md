@@ -1,8 +1,5 @@
 # PagedTextApp
-This sample app demonstrates the usage of PagedTextView library.
-
-## Library
-PagedTextView: https://github.com/onikx/PagedTextView
+This sample app demonstrates the usage of the [PagedTextView](https://github.com/onikx/PagedTextView) library.
 
 ## Inspiration
 This work is successive development of the following StackOverflow answer: https://stackoverflow.com/a/32096884/3290339
