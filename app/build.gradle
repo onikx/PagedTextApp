@@ -32,7 +32,7 @@ dependencies {
     compileOnly 'javax.inject:javax.inject:1'
 
     // PagedTextView lib
-    implementation 'com.github.onikx:pagedtextview:0.1.2'
+    implementation 'com.github.onikx:pagedtextview:0.1.3'
 //    implementation project(":pagedtextviewlib")
 
     // Unit testing
